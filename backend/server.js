@@ -8,10 +8,9 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// Dynamic CORS configuration supporting all Vercel deployments and local development
 app.use(cors({
   origin: [
-    /\.vercel\.app$/, // Automatically allows any Vercel preview or production URL
+    /\.vercel\.app$/,
     "http://localhost:5173",
     "http://localhost:3000"
   ],
@@ -20,19 +19,13 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-// Connect to MongoDB Atlas
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("MongoDB connected successfully"))
-.catch((err) => console.error("MongoDB connection error:", err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-// API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/tournaments', require('./routes/tournaments'));
 
-// Health check route
 app.get('/', (req, res) => {
   res.status(200).send("GamePortal Backend is running live!");
 });
