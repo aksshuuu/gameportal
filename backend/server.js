@@ -6,13 +6,12 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware configuration
 app.use(express.json());
 
-// CORS configuration to allow your live Vercel frontend and local development
+// Dynamic CORS configuration supporting all Vercel deployments and local development
 app.use(cors({
   origin: [
-    "https://gameportal-sable.vercel.app", 
+    /\.vercel\.app$/, // Automatically allows any Vercel preview or production URL
     "http://localhost:5173",
     "http://localhost:3000"
   ],
@@ -33,7 +32,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/tournaments', require('./routes/tournaments'));
 
-// Health check route (used by UptimeRobot to keep the server awake)
+// Health check route
 app.get('/', (req, res) => {
   res.status(200).send("GamePortal Backend is running live!");
 });
