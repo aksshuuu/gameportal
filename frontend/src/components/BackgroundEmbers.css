@@ -1,0 +1,35 @@
+.embers-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Prevents flakes from blocking clicks on your portal */
+  z-index: 1; /* Changed to 1 so the embers float over the solid dark background */
+  overflow: hidden;
+  background: transparent;
+}
+
+.ember {
+  position: absolute;
+  bottom: -20px;
+  background-color: #ff6600; /* Glowing orange core */
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff6600, 0 0 15px #ff2200; /* Outer fire glow */
+  opacity: 0;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1; /* Fade in at the bottom */
+  }
+  100% {
+    transform: translateY(-105vh) translateX(30px) scale(0.3); /* Float up and drift right */
+    opacity: 0; /* Fade out as it burns up */
+  }
+}

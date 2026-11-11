@@ -1,0 +1,44 @@
+/* Import a sharp, futuristic gaming font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+
+.gp-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 150px; /* Ensures it takes up space inside the box */
+}
+
+.gp-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 5rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 4px;
+  position: relative;
+  /* Orange neon glow matching your embers */
+  text-shadow: 
+    0 0 10px rgba(255, 102, 0, 0.8),
+    0 0 20px rgba(255, 34, 0, 0.8),
+    0 0 40px rgba(255, 34, 0, 0.6);
+  animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+/* Adds a subtle continuous pulsing effect to the glow */
+@keyframes pulseGlow {
+  from {
+    text-shadow: 
+      0 0 5px rgba(255, 102, 0, 0.5),
+      0 0 10px rgba(255, 34, 0, 0.5),
+      0 0 20px rgba(255, 34, 0, 0.3);
+    transform: scale(0.98);
+  }
+  to {
+    text-shadow: 
+      0 0 15px rgba(255, 102, 0, 1),
+      0 0 30px rgba(255, 34, 0, 0.9),
+      0 0 50px rgba(255, 34, 0, 0.7);
+    transform: scale(1.02);
+  }
+}

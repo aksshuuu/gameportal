@@ -1,0 +1,209 @@
+/* =====================================
+   USER AREA
+===================================== */
+
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 12px;
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+}
+
+.logout-button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 7px;
+  background: #21152c;
+  color: #c084fc;
+  font-size: 11px;
+}
+
+.logout-button:hover {
+  background: #3b1d4f;
+}
+
+/* =====================================
+   AUTH MODAL
+===================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+}
+
+.auth-modal {
+  width: min(420px, 100%);
+  padding: 35px;
+  position: relative;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #181525, #0e0e18);
+  border: 1px solid #3a2854;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.7), 0 0 70px rgba(124, 58, 237, 0.15);
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #242433;
+  color: #aaa;
+  font-size: 20px;
+}
+
+.auth-logo {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  font-size: 28px;
+  box-shadow: 0 10px 35px rgba(124, 58, 237, 0.4);
+}
+
+.auth-modal h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.auth-modal > p {
+  color: #71717a;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+.auth-modal form {
+  display: grid;
+  gap: 13px;
+}
+
+.auth-modal input,
+.auth-modal select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #30303e;
+  border-radius: 8px;
+  background: #0a0a12;
+  color: white;
+  outline: none;
+}
+
+.auth-modal input:focus,
+.auth-modal select:focus {
+  border-color: #8b5cf6;
+}
+
+.auth-switch {
+  margin-top: 20px;
+  text-align: center;
+  color: #71717a;
+  font-size: 11px;
+}
+
+.auth-switch button {
+  border: none;
+  background: transparent;
+  color: #c084fc;
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.primary-btn,
+.secondary-btn,
+.login-btn,
+.signup-btn,
+.view-all,
+.join-btn,
+.gaming-card-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+/* =========================================
+   BULLETPROOF HEADER & NAVIGATION FIX
+   ========================================= */
+
+.site-header {
+  background-color: #0f0f11;
+  border-bottom: 1px solid #222;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center; /* Centers the inner wrapper */
+}
+
+/* Hardcoding the max-width so it matches your dashboard */
+.site-header .header-inner {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px !important; /* Forces it to stop stretching to the edges */
+  margin: 0 auto !important;
+  padding: 1.5rem 2rem;
+}
+
+/* Force links into a row */
+.primary-navigation {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Hardcoded margin spacing to prevent squishing */
+.primary-navigation .nav-link {
+  display: inline-block !important;
+  margin: 0 1.5rem !important; /* Forces physical space between links */
+  color: #a0a0a0;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.primary-navigation .nav-link:hover,
+.primary-navigation .nav-link.is-active {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+}
+
+.header-account {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.mobile-menu-toggle {
+  display: none !important;
+}
