@@ -1,24 +1,49 @@
+
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function OAuthCallback() {
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const token = searchParams.get("token");
 
   useEffect(() => {
-    if (token) {
-      // Save the token and trigger the login state update globally
-      localStorage.setItem("token", token);
-      window.dispatchEvent(new Event("gameportal-auth-change"));
-      
-      // Send the user directly to their dashboard
-      navigate("/dashboard");
-    } else {
-      // If something went wrong, send them back to login with an error
-      navigate("/login?error=discord_failed");
+    // Read the token from the URL fragment (#token=...)
+    const hashParams = new URLSearchParams(
+      window.location.hash.substring(1)
+    );
+
+    const token = hashParams.get("token");
+
+    if (!token) {
+      // Discord authentication failed
+      navigate("/login?error=discord_failed", {
+        replace: true,
+      });
+      return;
     }
-  }, [token, navigate]);
+
+    // Save the new JWT token
+    localStorage.setItem("token", token);
+
+    // Remove any previous user's cached profile
+    localStorage.removeItem("user");
+
+    // Remove the token from the browser's address bar
+    window.history.replaceState(
+      null,
+      "",
+      "/oauth-callback"
+    );
+
+    // Notify the website that authentication changed
+    window.dispatchEvent(
+      new Event("gameportal-auth-change")
+    );
+
+    // Redirect to the player dashboard
+    navigate("/dashboard", {
+      replace: true,
+    });
+  }, [navigate]);
 
   return (
     <div className="content-width page-content">
